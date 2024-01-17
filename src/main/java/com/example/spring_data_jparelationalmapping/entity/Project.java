@@ -1,5 +1,7 @@
 package com.example.spring_data_jparelationalmapping.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,7 +21,7 @@ public class Project {
 
     private String name_proj;
     private String descrp_proj;
-
+/**
     @OneToMany(mappedBy = "project")
-    private List<Employee> employees;
+    private List<Employee> employees;**/
 }

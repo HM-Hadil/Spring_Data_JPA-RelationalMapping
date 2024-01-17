@@ -19,8 +19,8 @@ public class Experience {
     private Long idExperience;
     private String compagnies;
     private String profession;
-
+/**
     @ManyToOne
     @JoinColumn(name = "FK_id_emp")
-    private Employee employee;
+    private Employee employee;**/
 }

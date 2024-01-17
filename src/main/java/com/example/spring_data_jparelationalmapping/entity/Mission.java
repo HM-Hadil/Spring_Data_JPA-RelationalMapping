@@ -1,11 +1,14 @@
 package com.example.spring_data_jparelationalmapping.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Data
@@ -19,6 +22,6 @@ public class Mission {
 
     private String name_mission;
 
-    @ManyToMany(mappedBy = "missions")
-    private List<Employee> employees;
+    @ManyToMany(mappedBy = "assignMission")
+    private Set<Employee> assignEmployees = new HashSet<>();
 }

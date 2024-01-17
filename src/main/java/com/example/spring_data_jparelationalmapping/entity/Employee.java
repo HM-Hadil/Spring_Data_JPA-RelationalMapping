@@ -2,13 +2,16 @@ package com.example.spring_data_jparelationalmapping.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Data
@@ -31,21 +34,21 @@ public class Employee {
     //nom de la colonne de jointure
     @JoinColumn(name = "FK_adrs_id")
     private Address address;
-
-    @OneToMany(mappedBy = "employee")
+    /**
+    @OneToMany()
     private List<Experience> experience;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="project_id")
     private Project project;
-
+**/
     @ManyToMany
     @JoinTable(
             name="employee_mission",
             joinColumns = @JoinColumn(name = "employee_id"),
             inverseJoinColumns = @JoinColumn(name = "mission_id")
     )
-    private List<Mission> missions;
+    private Set<Mission> assignMission= new HashSet<>() ;
 
 
 
