@@ -7,6 +7,9 @@ import com.example.spring_data_jparelationalmapping.mapper.EmployeeDTO;
 import com.example.spring_data_jparelationalmapping.repository.EmployeeRepo;
 import com.example.spring_data_jparelationalmapping.repository.MissionRepo;
 import com.example.spring_data_jparelationalmapping.response.EmployeResponseDTO;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +20,7 @@ import java.util.List;
 import java.util.Set;
 
 @RestController
+@Slf4j
 @RequestMapping("api/")
 public class EmployeeController {
     @Autowired
@@ -55,9 +59,11 @@ public class EmployeeController {
 **/
 
     @PostMapping("saveEmployee")
-    public ResponseEntity<Employee> addEmployee(@RequestBody Employee employee){
-        this.employeeRepo.save(employee);
-        return new ResponseEntity<>(employee, HttpStatus.CREATED);
+    public Employee addEmployee(@RequestBody Employee employee){
+
+        log.info("Endpoint '...' (POST) finished");
+
+        return this.employeeRepo.save(employee);
     }
     @GetMapping("getEmployeeId/{id}")
     public  ResponseEntity<Employee> getEmployee(@PathVariable Long id){
@@ -83,4 +89,19 @@ public class EmployeeController {
 
     }
 
+    @GetMapping("getAllEmployee")
+    public List<Employee> getAllEmployee(){
+        return employeeRepo.findAll();
+    }
+
+    @PutMapping("updateEmp/{id}")
+    public Employee updateEmp(@PathVariable Long id, @RequestBody Employee employee){
+        employee.setEmployeeId(id);
+        return employeeRepo.save(employee);
+    }
+
+    @DeleteMapping("deleteEmp/{id}")
+    public void deleteEmp(@PathVariable Long id){
+        employeeRepo.deleteById(id);
+    }
 }

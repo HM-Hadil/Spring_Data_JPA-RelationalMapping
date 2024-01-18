@@ -1,5 +1,6 @@
 package com.example.spring_data_jparelationalmapping.entity;
 
+import com.example.spring_data_jparelationalmapping.enums.TypeEmployee;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -27,6 +28,12 @@ public class Employee {
     private String emp_firstName;
     private String emp_lastName;
     private Integer emp_age;
+
+     //pour le stocker dans la base des donnees
+    @Enumerated(EnumType.STRING)
+    private TypeEmployee typeEmployee;
+
+
     // un employee a une seule adrersse et vice versa
     /** si vous effectuez une opération sur l'entité parent,
      *  cette opération sera également appliquée à l'entité associée.**/

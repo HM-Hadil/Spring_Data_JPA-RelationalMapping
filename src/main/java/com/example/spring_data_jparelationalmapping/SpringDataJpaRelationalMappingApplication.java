@@ -8,6 +8,6 @@ public class SpringDataJpaRelationalMappingApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(SpringDataJpaRelationalMappingApplication.class, args);
-    }
 
+    }
 }
